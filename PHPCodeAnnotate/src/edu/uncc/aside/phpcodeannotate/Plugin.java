@@ -70,6 +70,8 @@ public class Plugin extends AbstractUIPlugin {
 
 	public static final String ANNOTATION_RECORD_FILE = "AnnotationRecords.txt";
 
+	public static final String Cleaned_MARKER_RECORD_FILE = "AnnotationRecords_cleaned.txt";
+
 	public static NodePositionInfo currentMarkerWorkedOnPositionInfo = null;
 
 	public static String STATE_LOCATION = null;
@@ -155,7 +157,7 @@ public class Plugin extends AbstractUIPlugin {
 		*/
 		
 		///save markers if applicable, and save annotations
-		PostRunPluginConfig.config(allMarkerRecords, allAnnotationRecords);
+		//PostRunPluginConfig.config(allMarkerRecords, allAnnotationRecords);
 		
 		//scan the project, locate the file with the fileDir, and then create the marker,
 		

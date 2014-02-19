@@ -125,15 +125,15 @@ public class ASIDECodeAnnotateHandler extends AbstractHandler {
 				// if it is not the first time to run CodeAnnotate on this project, then disable the scan function,
 				//we have already pop the marker records from the file and displayed in Eclipse already. 
 				
-				if(Plugin.FIRST_TIME_RUN == false){//simply display the markers based on the marker records in the file 
+				if(true){//simply display the markers based on the marker records in the file 
 					String fileDir = tmpSourceModule.getResource().getFullPath().toString();
-					System.out.println("all markers size = " + Plugin.allMarkerRecords.size());
+					//System.out.println("all markers size = " + Plugin.allMarkerRecords.size());
 					HashSet<MarkerRecord> markerRecordsInSingleFile = Utils.getMarkerRecordsForSingleFile(Plugin.allMarkerRecords, fileDir);
 					Utils.createMarkersForSingleFile(markerRecordsInSingleFile, tmpSourceModule);
 					
 					HashSet<AnnotationRecord> annotationRecordsInSingleFile = Utils.getAnnotationRecordsForSingleFile(Plugin.allAnnotationRecords, fileDir);
 					Utils.createAnnotationsForSingleFile(annotationRecordsInSingleFile, tmpSourceModule);
-					
+					if(markerRecordsInSingleFile.size() > 0)
 					System.out.println("finished creating markers for fileDir = " + fileDir + ", markerRecordsInSingleFile size = " + markerRecordsInSingleFile.size());
 				}
 			else{ //start scanning the files for sensitive operations

@@ -8,14 +8,15 @@ import java.util.Iterator;
 
 import edu.uncc.aside.phpcodeannotate.models.AnnotationRecord;
 import edu.uncc.aside.phpcodeannotate.models.MarkerRecord;
+import edu.uncc.aside.phpcodeannotate.util.Utils;
 
 public class PostRunPluginConfig {
 	//write Markers info to persistent file
 	public static void config(HashSet<MarkerRecord> allMarkerRecords, HashSet<AnnotationRecord> allAnnotationRecords){
-	if(Plugin.FIRST_TIME_RUN == true){  //if the plugin is run the first time, then the marker records need to be stored, or else, don't store marker records
+	//if(Plugin.FIRST_TIME_RUN == true){  //if the plugin is run the first time, then the marker records need to be stored, or else, don't store marker records
 		writeMarkerRecordIntoFile(allMarkerRecords);
-		writeAnnotationRecordIntoFile(allAnnotationRecords);
-	}
+	//	writeAnnotationRecordIntoFile(allAnnotationRecords);
+	//}
 	}
 	
 	private static void writeAnnotationRecordIntoFile(
@@ -77,7 +78,9 @@ public class PostRunPluginConfig {
 
 	public static void writeMarkerRecordIntoFile(HashSet<MarkerRecord> allMarkerRecords){
 		
-		String fileName = Plugin.STATE_LOCATION + "/" + Plugin.MARKER_RECORD_FILE;
+		String basePath = Utils.getPlugingBasePath();
+		String fileName = basePath + Plugin.Cleaned_MARKER_RECORD_FILE;
+		
 		
 		System.out.println("size of markers =========== " + Plugin.allMarkerRecords.size());
 		Iterator<MarkerRecord> iter = allMarkerRecords.iterator();

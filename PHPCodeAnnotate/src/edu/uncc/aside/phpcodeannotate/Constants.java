@@ -17,6 +17,6 @@ public class Constants {
 	public static final Set<String> PHPLibraryFolders = new HashSet<String>(Arrays.asList("PHP Include Path", "PHP Language Library", ""));
 	public static final Object QUESTION_MESSAGE = "Where is the corresponding authentication process?";
 	public static final Object LOGIC_MARKER_MESSAGE = "This is an annotated access control logic.";
-	
+	public static final String isPureFunction = "isPureFunction";
 	
 }

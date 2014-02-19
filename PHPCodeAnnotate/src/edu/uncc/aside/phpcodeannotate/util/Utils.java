@@ -1,6 +1,8 @@
 package edu.uncc.aside.phpcodeannotate.util;
 
+import java.io.IOException;
 import java.io.StringReader;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +12,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.dltk.ast.references.VariableReference;
 import org.eclipse.dltk.core.DLTKCore;
 import org.eclipse.dltk.core.ISourceModule;
@@ -885,4 +888,15 @@ if(isAnnotated == false){//not annotated yet, show red warnings with questions
 	}
 		
 	}
+	public static String getPlugingBasePath(){
+Plugin plugin = Plugin.getDefault();
+URL base = plugin.getBundle().getEntry("/");
+
+try {
+return FileLocator.toFileURL(base).getFile() + "/";
+} catch (IOException e) {	
+e.printStackTrace();
+return "";
+}	
+}
 }

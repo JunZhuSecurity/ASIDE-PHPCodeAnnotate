@@ -14,18 +14,19 @@ import org.eclipse.core.runtime.IPath;
 import edu.uncc.aside.phpcodeannotate.models.AnnotationRecord;
 import edu.uncc.aside.phpcodeannotate.models.MarkerRecord;
 import edu.uncc.aside.phpcodeannotate.models.NodePositionInfo;
+import edu.uncc.aside.phpcodeannotate.util.Utils;
 
 public class PreRunPluginConfig {
 
 	public static void config() {
 		//check whether it is the first time 
-		prepareConfigFile();
-		if(Plugin.FIRST_TIME_RUN == false){ 
+	//	prepareConfigFile();
+	//	if(Plugin.FIRST_TIME_RUN == false){ 
 			//if this is not the first time running it, we need to read
 			//the markers and annotation recordsin the file
 		Plugin.allMarkerRecords = readMarkerRecordFile();
-		Plugin.allAnnotationRecords = readAnnotationRecordFile();
-		}
+	//	Plugin.allAnnotationRecords = readAnnotationRecordFile();
+	//	}
 	}
 	
 
@@ -85,7 +86,9 @@ public class PreRunPluginConfig {
 	public static HashSet<MarkerRecord> readMarkerRecordFile() {
 		// /read file and create the set of MarkerRecord, as well as initilize
 		// all the marker with the corresponding resources;
-		String markerRecordFileName = Plugin.STATE_LOCATION + "/" + Plugin.MARKER_RECORD_FILE;
+		String basePath = Utils.getPlugingBasePath();
+		String markerRecordFileName = basePath + Plugin.MARKER_RECORD_FILE;
+		
 		int NumOfItems = Plugin.MARKER_FILE_NUM_OF_ITEMS;
 		String regex = Plugin.COMMA;
 		HashSet<MarkerRecord> allMarkerRecords = new HashSet<MarkerRecord>();
@@ -122,7 +125,9 @@ public class PreRunPluginConfig {
 				else{//no annotations made yet, do nothing here.
 					
 				}
+				if(!allMarkerRecords.contains(markerRecord)){
 				allMarkerRecords.add(markerRecord);
+				}
 			}
 			System.out.println("in pre run config, marker records size = " + allMarkerRecords.size());
 
